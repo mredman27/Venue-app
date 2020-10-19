@@ -8,7 +8,7 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
-import com.techelevator.city.City;
+
 import com.techelevator.projects.model.Employee;
 import com.techelevator.projects.model.EmployeeDAO;
 
@@ -58,8 +58,8 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
 		
 		while (results.next()) {
-			Employee myemployee = mapRowToEmployee(results);
-			employeeList.add(myemployee);
+			Employee myEmployee = mapRowToEmployee(results);
+			employeeList.add(myEmployee);
 		}
 		
 		return employeeList;
@@ -67,19 +67,38 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 
 	@Override
 	public List<Employee> getEmployeesWithoutProjects() {
+		List<Employee> employeeList = new ArrayList<>();
+		String sql = "SELECT * FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM project_employee)";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 		
+		while (results.next()) {
+			Employee myEmployee = mapRowToEmployee(results);
+			employeeList.add(myEmployee);
+		}
 		
-		return new ArrayList<>();
+		return employeeList;
 	}
 
 	@Override
 	public List<Employee> getEmployeesByProjectId(Long projectId) {
-		return new ArrayList<>();
+		List<Employee> employeeList = new ArrayList<>();
+		String sql = "SELECT * FROM employee JOIN project_employee "
+				+ "ON project_employee.employee_id = employee.employee_id" 
+				+ "WHERE project_employee.project_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql,projectId);
+		
+		while (results.next()) {
+			Employee myEmployee = mapRowToEmployee(results);
+			employeeList.add(myEmployee);
+		}
+		
+		return employeeList;
 	}
 
 	@Override
 	public void changeEmployeeDepartment(Long employeeId, Long departmentId) {
-		
+		String sql = "UPDATE employee SET department_id = ? WHERE employee_id = ?";
+		jdbcTemplate.update(sql, departmentId, employeeId);
 	}
 	
 	private Employee mapRowToEmployee (SqlRowSet results) {
