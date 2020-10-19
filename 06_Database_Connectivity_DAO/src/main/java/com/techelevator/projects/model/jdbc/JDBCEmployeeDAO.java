@@ -83,7 +83,7 @@ public class JDBCEmployeeDAO implements EmployeeDAO {
 	public List<Employee> getEmployeesByProjectId(Long projectId) {
 		List<Employee> employeeList = new ArrayList<>();
 		String sql = "SELECT * FROM employee JOIN project_employee "
-				+ "ON project_employee.employee_id = employee.employee_id" 
+				+ "ON project_employee.employee_id = employee.employee_id " 
 				+ "WHERE project_employee.project_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql,projectId);
 		
