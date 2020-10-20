@@ -50,14 +50,14 @@ public class JDBCDepartmentDAOIntegrationTest {
     	dataSource.destroy();
     }
 
-//    @Test 
-//    public void getDepartmentByID() {
-//    	Department savedDepartment = getDepartment("Test Department");
-//    	dao.createDepartment(savedDepartment);
-//    	
-//    	Department givenDepartment = dao.getDepartmentById(savedDepartment.getId());
-//    	assertDepartmentsAreEqual(savedDepartment, givenDepartment);
-//    }
+    @Test 
+    public void getDepartmentByID() {
+    	Department savedDepartment = getDepartment("Test Department");
+    	dao.createDepartment(savedDepartment);
+    	
+    	Department givenDepartment = dao.getDepartmentById(savedDepartment.getId());
+    	assertDepartmentsAreEqual(savedDepartment, givenDepartment);
+    }
 	@Test
 	public void saveNewDepartmentAndReadItBack() throws SQLException {
 		Department savedDepartment = getDepartment("Department");
