@@ -49,7 +49,14 @@ public class JDBCDepartmentDAOIntegrationTest {
     public static void closeDataSource() {
     	dataSource.destroy();
     }
-
+    @Test
+    public void getDepartmentByName() {
+    	Department savedDepartment = getDepartment("Test Department");
+    	dao.createDepartment(savedDepartment);
+    	
+    	Department givenDepartment = dao.searchDepartmentsByName(savedDepartment.getName()).get(0);
+    	assertDepartmentsAreEqual(savedDepartment, givenDepartment);
+    }
     @Test 
     public void getDepartmentByID() {
     	Department savedDepartment = getDepartment("Test Department");
@@ -59,15 +66,26 @@ public class JDBCDepartmentDAOIntegrationTest {
     	assertDepartmentsAreEqual(savedDepartment, givenDepartment);
     }
 	@Test
-	public void saveNewDepartmentAndReadItBack() throws SQLException {
+	public void createNewDepartmentAndReadItBack() throws SQLException {
 		Department savedDepartment = getDepartment("Department");
-		savedDepartment = dao.createDepartment(savedDepartment); // This is the method we are testing
-	
-		Department givenDepartment = dao.getDepartmentById(savedDepartment.getId());
+		 // This is the method we are testing
+		savedDepartment = dao.createDepartment(savedDepartment); 
+		
+		// We tested this method earlier so it's OK to use here
+		Department givenDepartment = dao.getDepartmentById(savedDepartment.getId()); 
+
 		assertNotEquals(savedDepartment.getId(), null);
 		assertDepartmentsAreEqual(savedDepartment, givenDepartment);
 	}
-	
+	@Test 
+	public void saveDepartment() {
+		Department savedDepartment = getDepartment("Department");
+		dao.createDepartment(savedDepartment);
+		savedDepartment.setName("New Department Name");
+		dao.saveDepartment(savedDepartment);
+		Department givenDepartment = dao.getDepartmentById(savedDepartment.getId());
+		assertDepartmentsAreEqual(savedDepartment, givenDepartment );
+	}
 	private Department getDepartment(String name) {
 		Department d = new Department();
 		d.setName(name);
