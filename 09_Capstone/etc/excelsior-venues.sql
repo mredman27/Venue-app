@@ -327,6 +327,6 @@ ALTER TABLE city ADD FOREIGN KEY (state_abbreviation) REFERENCES state(abbreviat
 ALTER TABLE category_venue ADD FOREIGN KEY (venue_id) REFERENCES venue(id);
 ALTER TABLE category_venue ADD FOREIGN KEY (category_id) REFERENCES category(id);
 ALTER TABLE reservation ADD FOREIGN KEY (space_id) REFERENCES space(id);
-ALTER SEQUENCE sequence_name RESTART 1000;
+
 
 COMMIT;
