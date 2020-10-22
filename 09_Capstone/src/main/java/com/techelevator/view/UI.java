@@ -41,7 +41,7 @@ public class UI {
 		return scan.nextLine();
 	}
 	public void errorMessage() {
-		System.out.println("Please enter a valid option");
+		System.out.println("*** Please enter a valid option ***");
 	}
 	
 	public void exitMessage() {

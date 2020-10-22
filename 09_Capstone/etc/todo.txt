@@ -1,0 +1,11 @@
+* Sanitize user input and user input error handling
+* Converting the open and closed months from the database (which they are stored as ints) to usable LocalDate formats
+* Proper formatting for listing venue spaces 
+* Functionality for inputting data to reserve a space
+* Logic to check if that space is valid to reserve
+* If it is, adding that reservation to the database and returning it's ID
+
+
+*BONUS* 
+*Advanced Venue Search
+*Display Reservations

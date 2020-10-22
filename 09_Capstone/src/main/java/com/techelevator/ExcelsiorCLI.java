@@ -53,7 +53,7 @@ public class ExcelsiorCLI {
 			else if (option.equals("2")) {
 				
 			}
-			else if (option.equals("R")) {
+			else if (option.equalsIgnoreCase("R")) {
 				isFinished = true;
 			}
 			else ui.errorMessage();
