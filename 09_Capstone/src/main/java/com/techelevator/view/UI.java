@@ -26,7 +26,7 @@ public class UI {
 	public String printVenueDetails(Venue venue) {
 		System.out.println(venue.getName());
 		System.out.println("Location: " + venue.getCity() + ", " + venue.getState());
-		System.out.println("Categories " + venue.getCategories());
+		System.out.println("Categories: " + venue.getCategories());
 		System.out.println("\n" + venue.getDescription());
 		System.out.println("What would you like to do next?");
 		System.out.println("\t 1) View Spaces");
