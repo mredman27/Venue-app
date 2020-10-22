@@ -7,7 +7,7 @@ import com.techelevator.model.domain.*;
 public interface VenueSpacesDAO {
 	public List<Venue> getAllVenues();
 	
-	public Venue getVenueById();
+	public Venue getVenueById(int id);
 	
 	public List<Space> getAllSpacesFromVenue(Venue venue);
 	

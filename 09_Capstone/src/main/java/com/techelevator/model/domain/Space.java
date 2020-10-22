@@ -11,7 +11,7 @@ public class Space {
 	private LocalDate closeMonth;
 	private int maximumOccupancy;
 	private boolean wheelchairAccessible;
-	private BigDecimal monthlyRate;
+	private BigDecimal dailyRate;
 	
 	// Getters & Setters
 	public int getId() {
@@ -50,10 +50,10 @@ public class Space {
 	public void setWheelchairAccessible(boolean wheelchairAccessible) {
 		this.wheelchairAccessible = wheelchairAccessible;
 	}
-	public BigDecimal getMonthlyRate() {
-		return monthlyRate;
+	public BigDecimal getDailyRate() {
+		return dailyRate;
 	}
-	public void setMonthlyRate(BigDecimal monthlyRate) {
-		this.monthlyRate = monthlyRate;
+	public void setDailyRate(BigDecimal dailyRate) {
+		this.dailyRate = dailyRate;
 	}
 }

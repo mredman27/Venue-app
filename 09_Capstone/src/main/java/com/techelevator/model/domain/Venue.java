@@ -5,6 +5,7 @@ import java.util.List;
 public class Venue {	
 	// Instance variables
 	private int id;
+	private int venueId;
 	private String name;
 	private String city;
 	private String description;
@@ -17,6 +18,12 @@ public class Venue {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public void setVenueId(int id) {
+		this.venueId = id;
+	}
+	public int getVenueId() {
+		return venueId;
 	}
 	public String getName() {
 		return name;
