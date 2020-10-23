@@ -101,12 +101,12 @@ public class JDBCVenueSpacesDAO implements VenueSpacesDAO {
 		space.setWheelchairAccessible(results.getBoolean("is_accessible"));
 		space.setDailyRate(BigDecimal.valueOf(results.getDouble("daily_rate_dec")));
 		space.setMaximumOccupancy(results.getInt("max_occupancy"));
-//		if (results.getDate("open_from") != null) {
-//			space.setOpenMonth(results.getDate("open_from").toLocalDate());
-//		}
-//		if (results.getDate("open_to") != null) {
-//			space.setCloseMonth(results.getDate("open_to").toLocalDate());
-//		}
+		if (results.getInt("open_from") != 0) {
+			space.setOpenMonth(results.getInt("open_from"));
+		}
+		if (results.getInt("open_to") != 0) {
+			space.setCloseMonth(results.getInt("open_to"));
+		}
 		return space;
 	}
 }
