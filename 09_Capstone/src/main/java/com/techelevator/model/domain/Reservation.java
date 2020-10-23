@@ -9,6 +9,7 @@ public class Reservation {
 	private LocalDate startDate;
 	private LocalDate endDate;
 	private String name;
+	private int people;
 	
 	// Getters & Setters
 	public String getName() {
@@ -41,5 +42,10 @@ public class Reservation {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
-
+	public void setPeople(int people) {
+		this.people = people;
+	}
+	public int getPeople() {
+		return people;
+	}
 }

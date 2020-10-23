@@ -81,7 +81,7 @@ public class JDBCVenueSpacesDAO implements VenueSpacesDAO {
 	@Override
 	public List<Space> getValidSpaces(Venue venue, RequestedReservation reservation) {
 		List<Space> validSpaces = new ArrayList<>();
-		String sql = "SELECT * FROM space WHERE venue_id = ? AND max_occupancy > ? "
+		String sql = "SELECT name, id, is_accessible, open_from, open_to, max_occupancy, CAST(daily_rate AS decimal) AS daily_rate_dec FROM space WHERE venue_id = ? AND max_occupancy > ? "
 				+ "AND (open_from IS NULL OR (open_from <= ? AND open_to >= ?))";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, venue.getId(), reservation.getPeople(), reservation.getStartMonth(), reservation.getEndMonth());
 		while (results.next()) {

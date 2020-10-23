@@ -10,6 +10,7 @@ import java.util.Scanner;
 import org.springframework.util.StringUtils;
 
 import com.techelevator.model.domain.RequestedReservation;
+import com.techelevator.model.domain.Reservation;
 import com.techelevator.model.domain.Space;
 import com.techelevator.model.domain.Venue;
 
@@ -40,7 +41,11 @@ public class UI {
 		System.out.println("\t R) Return to previous menu");
 		return scan.nextLine();
 	}
-	public String printOutSpaces(List<Space> spaceList) {
+	public void printOutSpaces(List<Space> spaceList) {
+		if (spaceList.size() == 0) {
+			System.out.println("No results found!");
+			return;
+		}
 		for (Space s : spaceList) {
 			System.out.printf("%-5s", "#" + s.getId());
 			System.out.printf("%-20s ", s.getName());
@@ -50,16 +55,35 @@ public class UI {
 			}
 			System.out.println("");
 		}
+	
+	}
+	public String printOutVenueMenu() {
+		System.out.println("What would you like to do?");
+		System.out.println("\t 1) Reserve a space");
+		System.out.println("\t R) Return to previous screen");
 		return scan.nextLine();
 	}
-	
-	public String printOutReservationMenu() {
+	public RequestedReservation printOutReservationMenu() {
 		RequestedReservation requestedReservation = new RequestedReservation();
 		System.out.println("When do you need the space?");
 		requestedReservation.setStartDate(scan.nextLine());
 		System.out.println("How many days will you need the space?");
+		requestedReservation.setEndDate(scan.nextInt());
+		scan.nextLine();
 		System.out.println("How many people will be in attendance");
-		return scan.nextLine();
+		requestedReservation.setPeople(scan.nextInt());
+		return requestedReservation;
+	}
+	
+	public Reservation printOutReservationConfirmationMenu() {
+		Reservation reservation = new Reservation();
+		System.out.println("Which space would you like to reserve? (Enter 0 to cancel)");
+		reservation.setId(scan.nextInt());
+		scan.nextLine();
+		System.out.println("And what name will this be under?");
+		reservation.setName(scan.nextLine());
+		return reservation;
+		
 	}
 	public void errorMessage() {
 		System.out.println("*** Please enter a valid option ***");

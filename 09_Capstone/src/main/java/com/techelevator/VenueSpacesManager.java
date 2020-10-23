@@ -9,7 +9,10 @@ import com.techelevator.model.dao.JDBCVenueSpacesDAO;
 public class VenueSpacesManager {
 
 	private JDBCVenueSpacesDAO venueSpacesDAO;
-
+	private Reservation reservation;
+	private RequestedReservation requestedReservation;
+	private Venue venue;
+	
 	public VenueSpacesManager(DataSource dataSource) {
 		venueSpacesDAO = new JDBCVenueSpacesDAO(dataSource);
 	}
@@ -26,5 +29,35 @@ public class VenueSpacesManager {
 	}
 	public List<Space> getValidSpacesFromVenue(Venue venue, RequestedReservation reservation) {
 		return venueSpacesDAO.getValidSpaces(venue, reservation);
+	}
+
+
+	public Reservation getReservation() {
+		return reservation;
+	}
+
+
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
+	}
+
+
+	public RequestedReservation getRequestedReservation() {
+		return requestedReservation;
+	}
+
+
+	public void setRequestedReservation(RequestedReservation requestedReservation) {
+		this.requestedReservation = requestedReservation;
+	}
+
+
+	public Venue getVenue() {
+		return venue;
+	}
+
+
+	public void setVenue(Venue venue) {
+		this.venue = venue;
 	}
 }
