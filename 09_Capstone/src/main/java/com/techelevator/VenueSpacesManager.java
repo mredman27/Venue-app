@@ -24,4 +24,7 @@ public class VenueSpacesManager {
 	public List<Space> getAllSpacesFromVenue(Venue venue) {
 		return venueSpacesDAO.getAllSpacesFromVenue(venue);
 	}
+	public List<Space> getValidSpacesFromVenue(Venue venue, RequestedReservation reservation) {
+		return venueSpacesDAO.getValidSpaces(venue, reservation);
+	}
 }

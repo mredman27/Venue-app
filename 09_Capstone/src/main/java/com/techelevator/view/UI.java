@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import org.springframework.util.StringUtils;
 
+import com.techelevator.model.domain.RequestedReservation;
 import com.techelevator.model.domain.Space;
 import com.techelevator.model.domain.Venue;
 
@@ -49,6 +50,15 @@ public class UI {
 			}
 			System.out.println("");
 		}
+		return scan.nextLine();
+	}
+	
+	public String printOutReservationMenu() {
+		RequestedReservation requestedReservation = new RequestedReservation();
+		System.out.println("When do you need the space?");
+		requestedReservation.setStartDate(scan.nextLine());
+		System.out.println("How many days will you need the space?");
+		System.out.println("How many people will be in attendance");
 		return scan.nextLine();
 	}
 	public void errorMessage() {
