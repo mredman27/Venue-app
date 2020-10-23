@@ -1,27 +1,28 @@
-package com.techelevator.projects.model;
+package com.techelevator.model.domain;
 
 import java.time.LocalDate;
 
-public class Project {
-	private Long id;
-	private String name;
+public class Reservation {
+	// Instance Variables
+	private int id;
+	private int spaceId;
 	private LocalDate startDate;
 	private LocalDate endDate;
 	
-	public Long getId() {
+	// Getters & Setters
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public int getSpaceId() {
+		return spaceId;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setSpaceId(int spaceId) {
+		this.spaceId = spaceId;
 	}
 	public LocalDate getStartDate() {
-	
 		return startDate;
 	}
 	public void setStartDate(LocalDate startDate) {
@@ -33,7 +34,5 @@ public class Project {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
-	public String toString() {
-		return name;
-	}
+
 }

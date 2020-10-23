@@ -44,7 +44,7 @@ public class JDBCDepartmentDAOIntegrationTest {
     	dataSource.getConnection().rollback();
     
     }
-    
+  
     @AfterClass
     public static void closeDataSource() {
     	dataSource.destroy();
@@ -53,6 +53,7 @@ public class JDBCDepartmentDAOIntegrationTest {
     public void getDepartmentByName() {
     	Department savedDepartment = getDepartment("Test Department");
     	dao.createDepartment(savedDepartment);
+
     	
     	Department givenDepartment = dao.searchDepartmentsByName(savedDepartment.getName()).get(0);
     	assertDepartmentsAreEqual(savedDepartment, givenDepartment);
