@@ -7,8 +7,8 @@ public class Space {
 	// Instance variables
 	private int id;
 	private String name;
-	private LocalDate openMonth;
-	private LocalDate closeMonth;
+	private int openMonth;
+	private int closeMonth;
 	private int maximumOccupancy;
 	private boolean wheelchairAccessible;
 	private BigDecimal dailyRate;
@@ -26,16 +26,16 @@ public class Space {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public LocalDate getOpenMonth() {
+	public int getOpenMonth() {
 		return openMonth;
 	}
-	public void setOpenMonth(LocalDate openMonth) {
+	public void setOpenMonth(int openMonth) {
 		this.openMonth = openMonth;
 	}
-	public LocalDate getCloseMonth() {
+	public int getCloseMonth() {
 		return closeMonth;
 	}
-	public void setCloseMonth(LocalDate closeMonth) {
+	public void setCloseMonth(int closeMonth) {
 		this.closeMonth = closeMonth;
 	}
 	public int getMaximumOccupancy() {

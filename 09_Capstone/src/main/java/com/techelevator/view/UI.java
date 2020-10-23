@@ -1,8 +1,13 @@
 package com.techelevator.view;
 
+import java.time.Month;
+import java.time.format.TextStyle;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
+
+import org.springframework.util.StringUtils;
 
 import com.techelevator.model.domain.Space;
 import com.techelevator.model.domain.Venue;
@@ -36,7 +41,13 @@ public class UI {
 	}
 	public String printOutSpaces(List<Space> spaceList) {
 		for (Space s : spaceList) {
-			System.out.println(s.getName());
+			System.out.printf("%-5s", "#" + s.getId());
+			System.out.printf("%-20s ", s.getName());
+			if (s.getOpenMonth() != 0) {
+				System.out.printf("%-5s", (Month.of(s.getOpenMonth())
+						.getDisplayName(TextStyle.SHORT,Locale.ENGLISH)) + ".");
+			}
+			System.out.println("");
 		}
 		return scan.nextLine();
 	}
