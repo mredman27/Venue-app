@@ -12,6 +12,7 @@ public class Venue {
 	private String state;
 	private List<String> categories;
 	
+	
 	// Getters & Setters
 	public int getId() {
 		return id;

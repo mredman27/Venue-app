@@ -48,7 +48,7 @@ public class UI {
 			return;
 		}
 		System.out.printf("%-5s", "ID");
-		System.out.printf("%-27s", "Name");
+		System.out.printf("%-33s", "Name");
 		System.out.printf("%-6s", "Open");
 		System.out.printf("%-6s", "Close");
 		System.out.printf("%-12s", "Daily Rate");
@@ -56,7 +56,7 @@ public class UI {
 		for (Space s : spaceList) {
 			
 			System.out.printf("%-5s", "#" + s.getId());
-			System.out.printf("%-26s ", s.getName());
+			System.out.printf("%-32s ", s.getName());
 			if (s.getOpenMonth() != 0) {
 				System.out.printf("%-6s", (Month.of(s.getOpenMonth())
 						.getDisplayName(TextStyle.SHORT,Locale.ENGLISH)) + ".");
@@ -122,7 +122,6 @@ public class UI {
 		System.out.println("Arrival Date: " + reservation.getStartDate());
 		System.out.println("Departure Date: " + reservation.getEndDate());
 		System.out.println("Days Requested: " + ChronoUnit.DAYS.between(reservation.getStartDate(), reservation.getEndDate()) );
-		
 	}
 	public void errorMessage() {
 		System.out.println("*** Please enter a valid option ***");

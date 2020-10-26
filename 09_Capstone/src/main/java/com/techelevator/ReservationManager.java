@@ -1,5 +1,7 @@
 package com.techelevator;
 
+import java.math.BigDecimal;
+
 import javax.sql.DataSource;
 
 import com.techelevator.model.dao.JDBCReservationDAO;

@@ -3,6 +3,7 @@ package com.techelevator.model.domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Reservation {
 	// Instance Variables
@@ -13,8 +14,7 @@ public class Reservation {
 	private String name;
 	private int people;
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-	private BigDecimal totalCost;
-	
+
 	// Getters & Setters
 	public String getName() {
 		return name;
@@ -58,8 +58,6 @@ public class Reservation {
 	public String getFormattedEndDate() {
 		return formatter.format(getEndDate());
 	}
-	public BigDecimal getTotalCost() {
-		return totalCost;
-	}
+
 	
 }
