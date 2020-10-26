@@ -12,4 +12,6 @@ public interface VenueSpacesDAO {
 	public List<Space> getAllSpacesFromVenue(Venue venue);
 	
 	public List<Space> getValidSpaces(Venue venue, RequestedReservation reservation);
+
+	public int createNewVenue(String name, int cityId, String description);
 }

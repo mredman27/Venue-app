@@ -27,6 +27,7 @@ public class JDBCReservationDAO implements ReservationDAO {
 		}
 		return id;
 	}
+	@Override
 	public int getCurrentId() {
 		String sql = "SELECT last_value FROM reservation_reservation_id_seq";
 		int id = 0;

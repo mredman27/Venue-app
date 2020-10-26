@@ -2,6 +2,7 @@ package com.techelevator.view;
 
 import java.time.Month;
 import java.time.format.TextStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -79,10 +80,16 @@ public class UI {
 		System.out.println("\t R) Return to previous screen");
 		return scan.nextLine();
 	}
-	public RequestedReservation printOutReservationMenu()  {
+	public RequestedReservation printOutReservationMenu() throws Exception {
 		RequestedReservation requestedReservation = new RequestedReservation();
 		System.out.println("When do you need the space? ('MM/DD/YYYY' Format)");
-		requestedReservation.setStartDate(scan.nextLine());
+		try {
+			requestedReservation.setStartDate(scan.nextLine());
+		}
+		catch (Exception e) {
+			System.out.println("Please enter in a valid date in format MM/DD/YYYY");
+			throw new Exception();
+		}
 		System.out.println("How many days will you need the space?");
 		requestedReservation.setEndDate(scan.nextInt());
 		scan.nextLine();
@@ -114,6 +121,7 @@ public class UI {
 		System.out.println("Attendees: " + reservation.getPeople());
 		System.out.println("Arrival Date: " + reservation.getStartDate());
 		System.out.println("Departure Date: " + reservation.getEndDate());
+		System.out.println("Days Requested: " + ChronoUnit.DAYS.between(reservation.getStartDate(), reservation.getEndDate()) );
 		
 	}
 	public void errorMessage() {

@@ -89,7 +89,16 @@ public class JDBCVenueSpacesDAO implements VenueSpacesDAO {
 		}
 		return validSpaces;
 	}
-	
+	@Override 
+	public int createNewVenue(String name, int cityId, String description) {
+		int id = 0;
+		String sql = "INSERT INTO venue(name, city_id, description) VALUES(?, ?, ?) RETURNING id";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, name, cityId, description);
+		while (results.next()) {
+			id = results.getInt("id");
+		}
+		return id;
+	}
 	private Venue mapRowToVenue(SqlRowSet results) {
 		Venue venue = new Venue();
 		venue.setName(results.getString("name"));

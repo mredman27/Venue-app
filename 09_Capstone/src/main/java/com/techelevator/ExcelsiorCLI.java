@@ -126,7 +126,11 @@ public class ExcelsiorCLI {
 			option = ui.printOutVenueMenu();
 			if (option.equals("1")) {
 				// This is where we store the inputed user data for the reservation for later
-				venueSpacesManager.setRequestedReservation(ui.printOutReservationMenu());
+				try {
+					venueSpacesManager.setRequestedReservation(ui.printOutReservationMenu());
+				} catch (Exception e) {
+					break;
+				}
 				// And this is where we search the spaces by the user data(time frame and occupancy)
 				ui.printOutSpaces(venueSpacesManager.getValidSpacesFromVenue(venueSpacesManager.getVenue(), venueSpacesManager.getRequestedReservation()));
 				runReservationMenu();
