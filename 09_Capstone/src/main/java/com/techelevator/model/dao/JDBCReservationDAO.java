@@ -21,12 +21,20 @@ public class JDBCReservationDAO implements ReservationDAO {
 					 "RETURNING reservation_id";
 		int id = 0;
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql,reservation.getSpaceId(), reservation.getPeople(), 
-				reservation.getStartDate(), reservation.getEndDate(), reservation.getName());
+				reservation.getFormattedStartDate(), reservation.getFormattedEndDate(), reservation.getName());
 		while (results.next()) {
 			id = results.getInt("reservation_id");
 		}
 		return id;
 	}
-
+	public int getCurrentId() {
+		String sql = "SELECT last_value FROM reservation_reservation_id_seq";
+		int id = 0;
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while (results.next()) {
+			id = results.getInt("last_value");
+		}
+		return id;
+	}
 
 }

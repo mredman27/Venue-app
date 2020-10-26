@@ -46,26 +46,42 @@ public class UI {
 			System.out.println("No results found!");
 			return;
 		}
+		System.out.printf("%-5s", "ID");
+		System.out.printf("%-21s", "Name");
+		System.out.printf("%-6s", "Open");
+		System.out.printf("%-6s", "Close");
+		System.out.printf("%-12s", "Daily Rate");
+		System.out.printf("%-12s %n", "Max Occupancy");
 		for (Space s : spaceList) {
+			
 			System.out.printf("%-5s", "#" + s.getId());
 			System.out.printf("%-20s ", s.getName());
 			if (s.getOpenMonth() != 0) {
-				System.out.printf("%-5s", (Month.of(s.getOpenMonth())
+				System.out.printf("%-6s", (Month.of(s.getOpenMonth())
 						.getDisplayName(TextStyle.SHORT,Locale.ENGLISH)) + ".");
 			}
-			System.out.println("");
+			else System.out.printf("%6s", "");
+			if (s.getCloseMonth() != 0) {
+				System.out.printf("%-6s", (Month.of(s.getCloseMonth())
+						.getDisplayName(TextStyle.SHORT,Locale.ENGLISH)) + ".");
+			}
+			else System.out.printf("%6s", "");
+			System.out.printf("%-12s", "$" + s.getDailyRate());
+			System.out.printf("%-12s %n", s.getMaximumOccupancy());
+			
 		}
 	
 	}
 	public String printOutVenueMenu() {
+		System.out.println("");
 		System.out.println("What would you like to do?");
 		System.out.println("\t 1) Reserve a space");
 		System.out.println("\t R) Return to previous screen");
 		return scan.nextLine();
 	}
-	public RequestedReservation printOutReservationMenu() {
+	public RequestedReservation printOutReservationMenu()  {
 		RequestedReservation requestedReservation = new RequestedReservation();
-		System.out.println("When do you need the space?");
+		System.out.println("When do you need the space? ('MM/DD/YYYY' Format)");
 		requestedReservation.setStartDate(scan.nextLine());
 		System.out.println("How many days will you need the space?");
 		requestedReservation.setEndDate(scan.nextInt());
@@ -75,14 +91,29 @@ public class UI {
 		return requestedReservation;
 	}
 	
-	public Reservation printOutReservationConfirmationMenu() {
+	public Reservation printOutReservationConfirmationMenu() throws Exception {
 		Reservation reservation = new Reservation();
 		System.out.println("Which space would you like to reserve? (Enter 0 to cancel)");
-		reservation.setId(scan.nextInt());
+		int i = 0;
+		i = scan.nextInt();
+		if (i == 0) {
+			scan.nextLine();
+			throw new Exception();
+		}
+		reservation.setSpaceId(i);
 		scan.nextLine();
 		System.out.println("And what name will this be under?");
 		reservation.setName(scan.nextLine());
 		return reservation;
+		
+	}
+	public void printOutReservationDetails(Reservation reservation) {
+		System.out.println("Thank you for submitting your reservation, your details as followed:");
+		System.out.println("Confirmation #: " + reservation.getId());
+		System.out.println("Reserved for: " + reservation.getName());
+		System.out.println("Attendees: " + reservation.getPeople());
+		System.out.println("Arrival Date: " + reservation.getStartDate());
+		System.out.println("Departure Date: " + reservation.getEndDate());
 		
 	}
 	public void errorMessage() {

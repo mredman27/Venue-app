@@ -55,5 +55,6 @@ public class Space {
 	}
 	public void setDailyRate(BigDecimal dailyRate) {
 		this.dailyRate = dailyRate;
+		this.dailyRate = this.dailyRate.setScale(2, BigDecimal.ROUND_HALF_UP);
 	}
 }

@@ -83,6 +83,10 @@ public class ExcelsiorCLI {
 			String option = "";
 			// This is getting the venues details from the earlier user input, displaying the details 
 			// and then getting user input for the menu
+			if (venueSpacesManager.getVenueById(Integer.parseInt(string)).getName() == null) {
+				ui.errorMessage();
+				break;
+			}
 			option = ui.printVenueDetails(venueSpacesManager.getVenueById(Integer.parseInt(string)));
 			if (option.equals("1")) {
 				venueSpacesManager.setVenue(venueSpacesManager.getVenueById(Integer.parseInt(string)));
@@ -131,14 +135,20 @@ public class ExcelsiorCLI {
 			else if (option.equalsIgnoreCase("R")) {
 				isFinished = true;
 			}
-			else ui.errorMessage();
 		}
 	}
 	public void runReservationMenu() {
 		boolean isFinished = false;
 		while (!isFinished) {
-			ui.printOutReservationConfirmationMenu();
-			
+			try {
+				reservationManager.saveReservation(ui.printOutReservationConfirmationMenu(), venueSpacesManager.getRequestedReservation());
+			}
+			catch (Exception e) {
+				isFinished = true;
+				break;
+			}
+			ui.printOutReservationDetails(reservationManager.getReservation());
+			isFinished = true;
 		}
 	}
 }

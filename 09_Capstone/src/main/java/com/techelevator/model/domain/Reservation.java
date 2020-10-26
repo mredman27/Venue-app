@@ -1,6 +1,7 @@
 package com.techelevator.model.domain;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Reservation {
 	// Instance Variables
@@ -10,6 +11,8 @@ public class Reservation {
 	private LocalDate endDate;
 	private String name;
 	private int people;
+	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+	private int days;
 	
 	// Getters & Setters
 	public String getName() {
@@ -47,5 +50,11 @@ public class Reservation {
 	}
 	public int getPeople() {
 		return people;
+	}
+	public String getFormattedStartDate() {
+		return formatter.format(getStartDate());
+	}
+	public String getFormattedEndDate() {
+		return formatter.format(getEndDate());
 	}
 }
