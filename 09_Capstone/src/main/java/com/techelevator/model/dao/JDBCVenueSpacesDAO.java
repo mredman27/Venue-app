@@ -26,7 +26,7 @@ public class JDBCVenueSpacesDAO implements VenueSpacesDAO {
 		String sql = "SELECT venue.name, venue.id, city.name as city_name, city.state_abbreviation as state_abbreviation, venue.description " + 
 				"FROM venue " + 
 				"JOIN city ON city.id = venue.city_id " +
-				"ORDER BY venue.id";
+				"ORDER BY venue.name";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 		while (results.next()) {
 			Venue venue; 
