@@ -47,7 +47,7 @@ public class UI {
 			return;
 		}
 		System.out.printf("%-5s", "ID");
-		System.out.printf("%-21s", "Name");
+		System.out.printf("%-27s", "Name");
 		System.out.printf("%-6s", "Open");
 		System.out.printf("%-6s", "Close");
 		System.out.printf("%-12s", "Daily Rate");
@@ -55,7 +55,7 @@ public class UI {
 		for (Space s : spaceList) {
 			
 			System.out.printf("%-5s", "#" + s.getId());
-			System.out.printf("%-20s ", s.getName());
+			System.out.printf("%-26s ", s.getName());
 			if (s.getOpenMonth() != 0) {
 				System.out.printf("%-6s", (Month.of(s.getOpenMonth())
 						.getDisplayName(TextStyle.SHORT,Locale.ENGLISH)) + ".");
